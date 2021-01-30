@@ -55,8 +55,8 @@
                     <input id="firstClassSeatCount" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p id="plus-button-f-class">+ </p>
-                    <p id="minus-button-f-class">-</p>
+                    <p onclick="seatAndTotalCount(true, 'firstClassSeatCount', 'label-first-class')" id="plus-button-f-class">+ </p>
+                    <p onclick="seatAndTotalCount(false, 'firstClassSeatCount', 'label-first-class')" id="minus-button-f-class">-</p>
                 </div>
             </div>
 
@@ -66,8 +66,8 @@
                     <input id="econoClassSeatCount" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p id="plus-button-e-class">+ </p>
-                    <p id="minus-button-e-class">-</p>
+                    <p onclick='seatAndTotalCount(true, "econoClassSeatCount", "label-econo-class")' id="plus-button-e-class">+ </p>
+                    <p onclick='seatAndTotalCount(false, "econoClassSeatCount", "label-econo-class")' id="minus-button-e-class">-</p>
                 </div>
             </div>
             <div class="calculations">
@@ -112,21 +112,7 @@
         <!--Thank You-->
         <script>
 
-            document.getElementById("plus-button-f-class").addEventListener("click", function () {
-                seatAndTotalCount(true, "firstClassSeatCount", "label-first-class");
-            })
-
-            document.getElementById("minus-button-f-class").addEventListener("click", function () {
-                seatAndTotalCount(false, "firstClassSeatCount", "label-first-class");
-            })
-
-            document.getElementById("plus-button-e-class").addEventListener("click", function () {
-                seatAndTotalCount(true, "econoClassSeatCount", "label-econo-class");
-            })
-
-            document.getElementById("minus-button-e-class").addEventListener("click", function () {
-                seatAndTotalCount(false, "econoClassSeatCount", "label-econo-class");
-            })
+            
         </script>
         <script src="script.js"></script>
 </body>
