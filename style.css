@@ -137,7 +137,7 @@ dialog::backdrop {
     background: rgba(255,0,0,.25);
   }
 
-  #dialog {
+  #dialog, #dialog5{
       margin: 300px auto;
       width: 700px;
       padding: 20px;
@@ -147,7 +147,7 @@ dialog::backdrop {
       color: white;
   }
 
-  #dialog2, #dialog3{
+  #dialog2, #dialog3, #dialog4{
     margin: 300px auto;
     width: 700px;
     padding: 20px;
@@ -166,4 +166,6 @@ dialog::backdrop {
       float:right;
   }
 
-  
+  #signup-area{
+      display: none;
+  }

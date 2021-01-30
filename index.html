@@ -29,7 +29,7 @@
 
     <!--Booking Section-->
     <main class="main-content container">
-        <div class="booking-form">
+        <div id="booking-area" class="booking-form">
             <h3>Booking Flights</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
@@ -106,6 +106,21 @@
             <button onclick="bookingButton()" class="btn-style">Book Now</button>
         </div>
 
+        <!-- Sign up section -->
+        <div id="signup-area" class="booking-form">
+            <h3>Sign up for Booking Flights</h3>
+            <div class="input-group">
+                <label for="">Name</label>
+                <input class="inp-style" type="text" name="" placeholder="Your Name">
+            </div>
+            <div class="input-group">
+                <label for="">Email</label>
+                <input class="inp-style" type="email" name="" placeholder="email@domain.com">
+            </div>
+
+            <button onclick="signUpButton()" class="btn-style">Sign up Now</button>
+        </div>
+
         <div class="booking-content">
             <h1>discover <br> around the world</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
@@ -129,7 +144,7 @@
                 </div>
                 <br>
                 <div class="button-inline">
-                    <button class="btn-style">Signup</button>
+                    <button onclick="signUpNow();" class="btn-style">Signup</button>
                     <button onclick="window.dialog.close();" class="btn-style">Cancel</button>
                 </div>
             </div>
@@ -144,7 +159,7 @@
 
                 <div class="booking-message">
 
-                    <p> Please check date of departure or arrival. </p>
+                    <p> Please select date of departure. </p>
                 </div>
                 <br>
                 <div class="button-inline">
@@ -173,46 +188,48 @@
 
         </dialog>
 
+        <dialog id="dialog4">
+            <div id="dialogue-message">
+                <h3>Discover Fly: Error Message</h3>
+                <br>
+
+                <div class="booking-message">
+
+                    <p> Please select date of arrival. </p>
+                </div>
+                <br>
+                <div class="button-inline">
+
+                    <button onclick="window.dialog4.close();" class="btn-style">Cancel</button>
+                </div>
+            </div>
+
+        </dialog>
+
+        <dialog id="dialog5">
+            <div id="dialogue-message">
+                <h3>Discover Fly: Sign up Success</h3>
+                <br>
+
+                <div class="booking-message">
+
+                    <p> Welcome! You have signed up. Please check your email and verify for confirmation. </p>
+                </div>
+                <br>
+                <div class="button-inline">
+
+                    <button onclick="window.dialog5.close(); location.reload();" class="btn-style">Close</button>
+                </div>
+            </div>
+
+        </dialog>
+
         </section>
 
         <!--Thank You-->
         <script>
+            
 
-            // function getMessageData() {
-            //     //Total ticket
-            //     var firstClassCount = document.getElementById("firstClassSeatCount").value;
-            //     firstClassCount = parseInt(firstClassCount);
-            //     var econoClassCount = document.getElementById("econoClassSeatCount").value;
-            //     econoClassCount = parseInt(econoClassCount);
-            //     var totalTickets = firstClassCount + econoClassCount;
-            //     document.getElementById("totalTickets").innerText = totalTickets;
-            //     // Date of departure
-            //     var inputDepartureDate = document.getElementById("input-departure-date").value;
-            //     inputDepartureDate = inputDepartureDate.replaceAll("^\"|\"$", "");
-            //     document.getElementById("departure-date").innerText = inputDepartureDate;
-            //     // total Amount
-            //     document.getElementById("total-amount").innerText = document.getElementById("totalAmount").innerText;
-
-            // }
-
-            // function bookingButton() {
-            //     // inputErrorCheck
-            //     //getDate
-            //     var inputDepartureDate = document.getElementById("input-departure-date").value;
-            //     inputDepartureDate = inputDepartureDate.replaceAll("^\"|\"$", "");
-            //     //getTotal Amount
-            //     totalAmount = document.getElementById("totalAmount").innerText;
-            //     totalAmount = parseFloat(totalAmount);
-
-            //     if (inputDepartureDate === "" || totalAmount === 0) {
-            //         window.dialog2.showModal()
-            //     } else {
-            //         getMessageData();
-            //         window.dialog.showModal();
-            //     }
-            // }
-
-           
 
         </script>
         <script src="script.js"></script>

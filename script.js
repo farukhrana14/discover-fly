@@ -23,7 +23,6 @@ function getPrice(idPriceLabel) {
     var price = document.getElementById(idPriceLabel).innerText;
     price = price.replace(/[^.\d]/g, '');
     price = parseInt(price);
-    console.log("Price = ", price);
     return price;
 }
 
@@ -84,12 +83,24 @@ function bookingButton() {
     totalAmount = document.getElementById("totalAmount").innerText;
     totalAmount = parseFloat(totalAmount);
 
-    if (inputDepartureDate === "" || inputArrivalDate === "") {
+    if (inputDepartureDate === "") {
         window.dialog2.showModal()
-    } else if(totalAmount === 0){
+    } else if (inputArrivalDate === "") {
+        window.dialog4.showModal()
+    } else if (totalAmount === 0) {
         window.dialog3.showModal()
     } else {
         getMessageData();
         window.dialog.showModal();
     }
+}
+
+function signUpNow() {
+    document.getElementById("booking-area").style.display = "none";
+    window.dialog.close()
+    document.getElementById("signup-area").style.display = "block";
+}
+
+function signUpButton() {
+    window.dialog5.showModal()
 }
