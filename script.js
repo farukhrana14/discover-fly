@@ -49,3 +49,47 @@ function allTotal(idPriceLabel) {
     document.getElementById("totalAmount").innerText = total;
     return total;
 }
+
+
+//get data to display in feedback modal message
+function getMessageData() {
+    //Total ticket
+    var firstClassCount = document.getElementById("firstClassSeatCount").value;
+    firstClassCount = parseInt(firstClassCount);
+    var econoClassCount = document.getElementById("econoClassSeatCount").value;
+    econoClassCount = parseInt(econoClassCount);
+    var totalTickets = firstClassCount + econoClassCount;
+    document.getElementById("totalTickets").innerText = totalTickets;
+    // Date of departure
+    var inputDepartureDate = document.getElementById("input-departure-date").value;
+    inputDepartureDate = inputDepartureDate.replaceAll("^\"|\"$", "");
+    document.getElementById("departure-date").innerText = inputDepartureDate;
+    // total Amount
+    document.getElementById("total-amount").innerText = document.getElementById("totalAmount").innerText;
+
+}
+
+
+//what happanes when the book now button is hit
+function bookingButton() {
+    // inputErrorCheck
+    //getDate
+    var inputDepartureDate = document.getElementById("input-departure-date").value;
+    inputDepartureDate = inputDepartureDate.replaceAll("^\"|\"$", "");
+
+    var inputArrivalDate = document.getElementById("input-arrival-date").value;
+    inputArrivalDate = inputArrivalDate.replaceAll("^\"|\"$", "");
+
+    //getTotal Amount
+    totalAmount = document.getElementById("totalAmount").innerText;
+    totalAmount = parseFloat(totalAmount);
+
+    if (inputDepartureDate === "" || inputArrivalDate === "") {
+        window.dialog2.showModal()
+    } else if(totalAmount === 0){
+        window.dialog3.showModal()
+    } else {
+        getMessageData();
+        window.dialog.showModal();
+    }
+}
