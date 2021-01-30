@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Booking</title>
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
     <!-- Stylesheet -->
@@ -32,7 +33,7 @@
             <h3>Booking Flights</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
             </div>
             <div class="input-group">
                 <label for="">Flying To</label>
@@ -41,7 +42,7 @@
             <div class="inputs">
                 <div class="input-group">
                     <label" for="">Departure</label>
-                    <input class="inp-style" type="date" name="">
+                        <input class="inp-style" type="date" name="">
                 </div>
                 <div class="input-group">
                     <label for="">Return</label>
@@ -50,21 +51,23 @@
             </div>
             <div class="input-group f-class">
                 <div>
-                    <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <label id="label-first-class" for="">First Class ($150)</label>
+                    <input id="first-class-seat" class="inp-style inp-width" type="number" name="" value="10">
                 </div>
                 <div class="plus-minus-btn">
-                    <p>+ -</p>
+                    <p id="plus-button-f-class">+ </p>
+                    <p id="minus-button-f-class">-</p>
                 </div>
             </div>
-            
+
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <input class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p> <span>+</span> <span>-</span> </p>
+                    <p id="plus-button-e-class">+ </p>
+                    <p id="minus-button-e-class">-</p>
                 </div>
             </div>
             <div class="calculations">
@@ -73,7 +76,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p>$ <span id = "subTotal">500</span> </p>
                     </div>
                 </div>
 
@@ -100,11 +103,66 @@
 
         <div class="booking-content">
             <h1>discover <br> around the world</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
+                veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise
+                voluptatibus quam</p>
         </div>
-    </section>
+        </section>
 
-    <!--Thank You-->
+        <!--Thank You-->
+        <script>
+
+            // document.getElementById("plus-button-f-class").addEventListener("click", function(){
+            //     console.log("clicked");                
+            // })
+
+            // document.getElementById("minus-button-f-class").addEventListener("click", function () {
+            //     console.log("Clicked");
+            // })
+
+            // document.getElementById("plus-button-e-class").addEventListener("click", function () {
+            //     console.log("Clicked");
+            // })
+
+            // document.getElementById("minus-button-e-class").addEventListener("click", function () {
+            //     console.log("Clicked");
+            // })
+
+            //First Class Seat Count Add
+            document.getElementById("plus-button-f-class").addEventListener("click", function () {
+                var seatCount = document.getElementById("first-class-seat").value;
+                seatCount = parseInt(seatCount);
+                document.getElementById("first-class-seat").value = seatCount + 1;
+
+                console.log("seat count is ", seatCount);
+            })
+
+
+            //First Class Seat Count Subtract           
+            document.getElementById("minus-button-f-class").addEventListener("click", function () {
+                var seatCount = document.getElementById("first-class-seat").value;
+                seatCount = parseInt(seatCount);
+                if (seatCount !== 0) {
+                    document.getElementById("first-class-seat").value = seatCount - 1;
+                }
+            })
+
+            // getPrice - from first class label
+            var price = document.getElementById("label-first-class").innerText;
+            price = price.replace(/[^.\d]/g, '');
+            price = parseInt(price);
+            // console.log("Price = ", price);
+
+            //Calculate Subtotal
+            var seatCount = document.getElementById("first-class-seat").value;
+            seatCount = parseInt(seatCount);
+            var subTotal = price * seatCount;
+            var subTotal = document.getElementById("subTotal").innerText;
+            subTotal = parseFloat(subTotal);
+            console.log("seat count2 is ", seatCount);
+            console.log("Sub Total is ", subTotal);
+
+        </script>
 </body>
 
 </html>
