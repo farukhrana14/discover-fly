@@ -52,7 +52,7 @@
             <div class="input-group f-class">
                 <div>
                     <label id="label-first-class" for="">First Class ($150)</label>
-                    <input id="firstClassSeatCount" class="inp-style inp-width" type="number" name="" value="10">
+                    <input id="firstClassSeatCount" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
                     <p id="plus-button-f-class">+ </p>
@@ -76,7 +76,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$ <span id = "subTotal">500</span> </p>
+                        <p>$ <span id="subTotal">000</span> </p>
                     </div>
                 </div>
 
@@ -85,7 +85,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$ <span id="taxAmount">50</span> </p>
+                        <p>$ <span id="taxAmount">00</span> </p>
                     </div>
                 </div>
                 <hr>
@@ -94,7 +94,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$ <span id = "totalAmount">550</span></p>
+                        <p>$ <span id="totalAmount">000</span></p>
                     </div>
                 </div>
             </div>
@@ -112,69 +112,21 @@
         <!--Thank You-->
         <script>
 
-            document.getElementById("plus-button-f-class").addEventListener("click", function(){
-                seatCount(true, "firstClassSeatCount", "label-first-class");
-
+            document.getElementById("plus-button-f-class").addEventListener("click", function () {
+                seatAndTotalCount(true, "firstClassSeatCount", "label-first-class");
             })
 
             document.getElementById("minus-button-f-class").addEventListener("click", function () {
-                seatCount(false, "firstClassSeatCount", "label-first-class");
+                seatAndTotalCount(false, "firstClassSeatCount", "label-first-class");
             })
 
             document.getElementById("plus-button-e-class").addEventListener("click", function () {
-                seatCount(true, "econoClassSeatCount", "label-econo-class");
+                seatAndTotalCount(true, "econoClassSeatCount", "label-econo-class");
             })
 
             document.getElementById("minus-button-e-class").addEventListener("click", function () {
-                seatCount(false, "econoClassSeatCount", "label-econo-class");
+                seatAndTotalCount(false, "econoClassSeatCount", "label-econo-class");
             })
-
-
-            function seatCount(isIncrease, idSeatCountType, idPriceLabel){
-                var seatCount = document.getElementById(idSeatCountType).value;
-                seatCount = parseInt(seatCount);
-                
-                if (isIncrease == true){
-                    seatCount = seatCount + 1;
-                } else if(isIncrease == false, seatCount !== 0){
-                    seatCount = seatCount - 1;
-                }
-                document.getElementById(idSeatCountType).value = seatCount;
-                allTotal(idSeatCountType,idPriceLabel);
-            }    
-            
-            
-            // getPrice - from first class label
-            function getPrice(idPriceLabel){
-            var price = document.getElementById(idPriceLabel).innerText;
-            price = price.replace(/[^.\d]/g, '');
-            price = parseInt(price);
-            console.log("Price = ", price);
-            return price;
-            }
-
-
-            //Calculate subtotal, total and tax
-            function allTotal(seatTypeCount, idPriceLabel){
-            var seatCount = document.getElementById(seatTypeCount).value;
-            seatCount = parseInt(seatCount);
-           
-            var price = getPrice(idPriceLabel);
-
-            var subTotal = price * seatCount;
-            subTotal = parseFloat(subTotal);
-            document.getElementById("subTotal").innerText = subTotal;
-            var taxRate = 0.10;
-            var tax = subTotal*taxRate;
-            document.getElementById("taxAmount").innerText = tax;
-            var total = subTotal + tax;
-            document.getElementById("totalAmount").innerText = total;
-            console.log("seat count2 is ", seatCount);
-            console.log("Sub Total is ", subTotal);
-
-            }
-
-            
         </script>
         <script src="script.js"></script>
 </body>
