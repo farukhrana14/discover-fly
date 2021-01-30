@@ -52,7 +52,7 @@
             <div class="input-group f-class">
                 <div>
                     <label id="label-first-class" for="">First Class ($150)</label>
-                    <input id="first-class-seat" class="inp-style inp-width" type="number" name="" value="10">
+                    <input id="firstClassSeatCount" class="inp-style inp-width" type="number" name="" value="10">
                 </div>
                 <div class="plus-minus-btn">
                     <p id="plus-button-f-class">+ </p>
@@ -62,8 +62,8 @@
 
             <div class="input-group f-class">
                 <div>
-                    <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="" value="0">
+                    <label id="label-econo-class" for="">Economy ($100)</label>
+                    <input id="econoClassSeatCount" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
                     <p id="plus-button-e-class">+ </p>
@@ -85,7 +85,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p>$ <span id="taxAmount">50</span> </p>
                     </div>
                 </div>
                 <hr>
@@ -94,7 +94,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p>$ <span id = "totalAmount">550</span></p>
                     </div>
                 </div>
             </div>
@@ -112,57 +112,71 @@
         <!--Thank You-->
         <script>
 
-            // document.getElementById("plus-button-f-class").addEventListener("click", function(){
-            //     console.log("clicked");                
-            // })
+            document.getElementById("plus-button-f-class").addEventListener("click", function(){
+                seatCount(true, "firstClassSeatCount", "label-first-class");
 
-            // document.getElementById("minus-button-f-class").addEventListener("click", function () {
-            //     console.log("Clicked");
-            // })
-
-            // document.getElementById("plus-button-e-class").addEventListener("click", function () {
-            //     console.log("Clicked");
-            // })
-
-            // document.getElementById("minus-button-e-class").addEventListener("click", function () {
-            //     console.log("Clicked");
-            // })
-
-            //First Class Seat Count Add
-            document.getElementById("plus-button-f-class").addEventListener("click", function () {
-                var seatCount = document.getElementById("first-class-seat").value;
-                seatCount = parseInt(seatCount);
-                document.getElementById("first-class-seat").value = seatCount + 1;
-
-                console.log("seat count is ", seatCount);
             })
 
-
-            //First Class Seat Count Subtract           
             document.getElementById("minus-button-f-class").addEventListener("click", function () {
-                var seatCount = document.getElementById("first-class-seat").value;
-                seatCount = parseInt(seatCount);
-                if (seatCount !== 0) {
-                    document.getElementById("first-class-seat").value = seatCount - 1;
-                }
+                seatCount(false, "firstClassSeatCount", "label-first-class");
             })
 
+            document.getElementById("plus-button-e-class").addEventListener("click", function () {
+                seatCount(true, "econoClassSeatCount", "label-econo-class");
+            })
+
+            document.getElementById("minus-button-e-class").addEventListener("click", function () {
+                seatCount(false, "econoClassSeatCount", "label-econo-class");
+            })
+
+
+            function seatCount(isIncrease, idSeatCountType, idPriceLabel){
+                var seatCount = document.getElementById(idSeatCountType).value;
+                seatCount = parseInt(seatCount);
+                
+                if (isIncrease == true){
+                    seatCount = seatCount + 1;
+                } else if(isIncrease == false, seatCount !== 0){
+                    seatCount = seatCount - 1;
+                }
+                document.getElementById(idSeatCountType).value = seatCount;
+                allTotal(idSeatCountType,idPriceLabel);
+            }    
+            
+            
             // getPrice - from first class label
-            var price = document.getElementById("label-first-class").innerText;
+            function getPrice(idPriceLabel){
+            var price = document.getElementById(idPriceLabel).innerText;
             price = price.replace(/[^.\d]/g, '');
             price = parseInt(price);
-            // console.log("Price = ", price);
+            console.log("Price = ", price);
+            return price;
+            }
 
-            //Calculate Subtotal
-            var seatCount = document.getElementById("first-class-seat").value;
+
+            //Calculate subtotal, total and tax
+            function allTotal(seatTypeCount, idPriceLabel){
+            var seatCount = document.getElementById(seatTypeCount).value;
             seatCount = parseInt(seatCount);
+           
+            var price = getPrice(idPriceLabel);
+
             var subTotal = price * seatCount;
-            var subTotal = document.getElementById("subTotal").innerText;
             subTotal = parseFloat(subTotal);
+            document.getElementById("subTotal").innerText = subTotal;
+            var taxRate = 0.10;
+            var tax = subTotal*taxRate;
+            document.getElementById("taxAmount").innerText = tax;
+            var total = subTotal + tax;
+            document.getElementById("totalAmount").innerText = total;
             console.log("seat count2 is ", seatCount);
             console.log("Sub Total is ", subTotal);
 
+            }
+
+            
         </script>
+        <script src="script.js"></script>
 </body>
 
 </html>
