@@ -47,4 +47,5 @@ function allTotal(idPriceLabel) {
     document.getElementById("taxAmount").innerText = tax;
     var total = subTotal + tax;
     document.getElementById("totalAmount").innerText = total;
+    return total;
 }

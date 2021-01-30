@@ -33,20 +33,21 @@
             <h3>Booking Flights</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
+                <input id="input-departure-port" class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
             </div>
             <div class="input-group">
                 <label for="">Flying To</label>
-                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+                <input id="input-arrival-port" class="inp-style" type="text" name=""
+                    placeholder="New York, United States">
             </div>
             <div class="inputs">
                 <div class="input-group">
                     <label" for="">Departure</label>
-                        <input class="inp-style" type="date" name="">
+                        <input id="input-departure-date" class="inp-style" type="date" name="">
                 </div>
                 <div class="input-group">
                     <label for="">Return</label>
-                    <input class="inp-style" type="date" name="">
+                    <input id="input-arrival-date" class="inp-style" type="date" name="">
                 </div>
             </div>
             <div class="input-group f-class">
@@ -55,8 +56,10 @@
                     <input id="firstClassSeatCount" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p onclick="seatAndTotalCount(true, 'firstClassSeatCount', 'label-first-class')" id="plus-button-f-class">+ </p>
-                    <p onclick="seatAndTotalCount(false, 'firstClassSeatCount', 'label-first-class')" id="minus-button-f-class">-</p>
+                    <p onclick="seatAndTotalCount(true, 'firstClassSeatCount', 'label-first-class')"
+                        id="plus-button-f-class"> <span style="cursor:default">+ </span> </p>
+                    <p onclick="seatAndTotalCount(false, 'firstClassSeatCount', 'label-first-class')"
+                        id="minus-button-f-class"> <span style="cursor:default">- </span></p>
                 </div>
             </div>
 
@@ -66,8 +69,10 @@
                     <input id="econoClassSeatCount" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <p onclick='seatAndTotalCount(true, "econoClassSeatCount", "label-econo-class")' id="plus-button-e-class">+ </p>
-                    <p onclick='seatAndTotalCount(false, "econoClassSeatCount", "label-econo-class")' id="minus-button-e-class">-</p>
+                    <p onclick='seatAndTotalCount(true, "econoClassSeatCount", "label-econo-class")'
+                        id="plus-button-e-class"><span style="cursor:default">+ </span> </p>
+                    <p onclick='seatAndTotalCount(false, "econoClassSeatCount", "label-econo-class")'
+                        id="minus-button-e-class"><span style="cursor:default">- </span></p>
                 </div>
             </div>
             <div class="calculations">
@@ -98,7 +103,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button onclick="bookingButton()" class="btn-style">Book Now</button>
         </div>
 
         <div class="booking-content">
@@ -107,12 +112,96 @@
                 veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise
                 voluptatibus quam</p>
         </div>
+
+        <dialog id="dialog">
+            <div id="dialogue-message">
+                <h3>Welcome to Discover Fly!</h3>
+                <br>
+
+                <div class="booking-message">
+                    <p>You have booked for <span id="totalTickets">02</span> tickets on <span id="departure-date">Jan
+                            20, 2021</span> to fly from <span id="departure-port">Dhaka, Bangladesh</span> to <span
+                            id="arrival-port">New York, United States.</span></p>
+                    <p>Your total price is $ <span id="total-amount"> 000</span>. </p>
+                    <p> Please signup to confirm your booking. </p>
+                </div>
+                <br>
+                <div class="button-inline">
+                    <button class="btn-style">Signup</button>
+                    <button onclick="window.dialog.close();" class="btn-style">Cancel</button>
+                </div>
+            </div>
+
+        </dialog>
+
+
+        <dialog id="dialog2">
+            <div id="dialogue-message">
+                <h3>Discover Fly: Error Message</h3>
+                <br>
+
+                <div class="booking-message">
+
+                    <p> Please check date of departure or number of seats you need. </p>
+                </div>
+                <br>
+                <div class="button-inline">
+
+                    <button onclick="window.dialog2.close();" class="btn-style">Cancel</button>
+                </div>
+            </div>
+
+        </dialog>
+
         </section>
 
         <!--Thank You-->
         <script>
 
-            
+            function getMessageData() {
+                //Total ticket
+                var firstClassCount = document.getElementById("firstClassSeatCount").value;
+                firstClassCount = parseInt(firstClassCount);
+                var econoClassCount = document.getElementById("econoClassSeatCount").value;
+                econoClassCount = parseInt(econoClassCount);
+                var totalTickets = firstClassCount + econoClassCount;
+                document.getElementById("totalTickets").innerText = totalTickets;
+                // Date of departure
+                var inputDepartureDate = document.getElementById("input-departure-date").value;
+                inputDepartureDate = inputDepartureDate.replaceAll("^\"|\"$", "");
+                document.getElementById("departure-date").innerText = inputDepartureDate;
+                // total Amount
+                document.getElementById("total-amount").innerText = document.getElementById("totalAmount").innerText;
+               
+            }
+
+            function bookingButton() {
+                
+                getMessageData();
+                window.dialog.showModal();
+            }
+            // function bookingButton() {
+            //     var inputDepartureDate = document.getElementById("input-departure-date").value;
+            //     inputDepartureDate = inputDepartureDate.replaceAll("^\"|\"$", "");
+            //     //    console.log(inputDepartureDate);
+
+            //     if (inputDepartureDate === "") {
+            //         window.dialog2.showModal();
+            //         // console.log("date is zero", inputDepartureDate);
+            //     } else if (total !== 0) {
+            //         window.dialog.showModal();
+            //     } 
+            //     // else if (total === 0){
+            //     //     window.dialog2.showModal();
+
+            //     // }
+
+
+
+            // }
+
+
+
         </script>
         <script src="script.js"></script>
 </body>
